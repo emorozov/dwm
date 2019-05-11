@@ -23,7 +23,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -31,7 +31,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",               NULL,       NULL,       0,            1,           -1 },
+	{ "Gimp",               NULL,       NULL,       1 << 6,       0,           -1 },
 	{ "Firefox",            NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "jetbrains-pycharm",  NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "Anki",               NULL,       NULL,       1 << 5,       0,           -1 },
@@ -68,12 +68,12 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "urxvtc", NULL };
 static const char *cmdbrightnessup[]  = { "sudo", "/home/jmv/bin/brightness", "up", NULL };
 static const char *cmdbrightnessdown[]  = { "sudo", "/home/jmv/bin/brightness", "down", NULL };
 static const char *cmdsoundup[]  = { "amixer", "-q", "-c", "1", "sset", "Master", "5%+", NULL };
 static const char *cmdsounddown[]  = { "amixer", "-q", "-c", "1", "sset", "Master", "5%-", NULL };
-static const char *cmdsoundtoggle[] = { "amixer", "-q", "-c", "1", "sset", "Master", "toggle", NULL };
+//static const char *cmdsoundtoggle[] = { "amixer", "-q", "-c", "1", "sset", "Master", "toggle", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -82,7 +82,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ 0,                            XF86MonBrightnessDown,     spawn,         {.v = cmdbrightnessdown } },
 	{ 0,                            XF86MonBrightnessUp,       spawn,         {.v = cmdbrightnessup } },
-	{ 0,                            XF86AudioMute,             spawn,         {.v = cmdsoundtoggle } },
+//	{ 0,                            XF86AudioMute,             spawn,         {.v = cmdsoundtoggle } },
 	{ 0,                            XF86AudioRaiseVolume,      spawn,         {.v = cmdsoundup } },
 	{ 0,                            XF86AudioLowerVolume,      spawn,         {.v = cmdsounddown } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
