@@ -69,16 +69,18 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
-static const char *cmdbrightnessup[]  = { "sudo", "/home/jmv/bin/brightness", "up", NULL };
-static const char *cmdbrightnessdown[]  = { "sudo", "/home/jmv/bin/brightness", "down", NULL };
+static const char *cmdbrightnessup[]  = { "brightnessctl", "s", "10%+", NULL };
+static const char *cmdbrightnessdown[]  = { "brightnessctl", "s", "10%-", NULL };
 static const char *cmdsoundup[]  = { "ponymix", "-N", "increase", "5", NULL };
 static const char *cmdsounddown[]  = { "ponymix", "-N", "decrease", "5", NULL };
-static const char *cmdsuspend[] = { "systemctl", "suspend", NULL };
+static const char *cmdsuspend[] = { "slock", "systemctl", "suspend", NULL };
+static const char *cmdlock[] = { "slock", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = cmdlock } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ 0,                            XF86MonBrightnessDown,     spawn,         {.v = cmdbrightnessdown } },
 	{ 0,                            XF86MonBrightnessUp,       spawn,         {.v = cmdbrightnessup } },
