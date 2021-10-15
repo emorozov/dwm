@@ -35,6 +35,7 @@ static const Rule rules[] = {
 	{ "Firefox",            NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "jetbrains-pycharm",  NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "Anki",               NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "telegram-desktop",   NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -72,10 +73,11 @@ static const char *termcmd[]  = { "kitty", NULL };
 static const char *cmdbrightnessup[]  = { "brightnessctl", "s", "10%+", NULL };
 static const char *cmdbrightnessdown[]  = { "brightnessctl", "s", "10%-", NULL };
 static const char *cmdsoundmute[]  = { "pactl", "set-sink-mute", "0", "toggle", NULL };
-static const char *cmdsoundup[]  = { "pactl", "set-sink-volume", "0", "+5%", NULL };
-static const char *cmdsounddown[]  = { "pactl", "set-sink-volume", "0", "-5%", NULL };
+static const char *cmdsoundup[]  = { "change-volume",  "2db+", "unmute", NULL };
+static const char *cmdsounddown[]  = { "change-volume",  "2db-", NULL };
 static const char *cmdsuspend[] = { "systemctl", "suspend", NULL };
 static const char *cmdlock[] = { "betterlockscreen", "-l", "dim", NULL };
+static const char *cmdscreenshot[] = { "flameshot", "gui", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -89,6 +91,7 @@ static Key keys[] = {
 	{ 0,                            XF86AudioLowerVolume,      spawn,         {.v = cmdsounddown } },
 	{ 0,                            XF86AudioMute,             spawn,         {.v = cmdsoundmute } },
 	{ MODKEY,                       XK_Pause,                  spawn,         {.v = cmdsuspend } },
+	{ MODKEY,                       XK_Print,                  spawn,         {.v = cmdscreenshot } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
