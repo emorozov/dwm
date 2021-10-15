@@ -9,7 +9,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-/*static const char *fonts[]          = { "Iosevka Nerd Font:size=9" };*/
+/*static const char *fonts[]          = { "UbuntuMono Nerd Font:size=10" };*/
 static char *fonts[]          = { "monospace:size=10", "Noto Color Emoji:pixelsize=10:antialias=true:autohint=true" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
@@ -71,10 +71,11 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *cmdbrightnessup[]  = { "brightnessctl", "s", "10%+", NULL };
 static const char *cmdbrightnessdown[]  = { "brightnessctl", "s", "10%-", NULL };
-static const char *cmdsoundup[]  = { "ponymix", "-N", "increase", "5", NULL };
-static const char *cmdsounddown[]  = { "ponymix", "-N", "decrease", "5", NULL };
-static const char *cmdsuspend[] = { "slock", "systemctl", "suspend", NULL };
-static const char *cmdlock[] = { "slock", NULL };
+static const char *cmdsoundmute[]  = { "pactl", "set-sink-mute", "0", "toggle", NULL };
+static const char *cmdsoundup[]  = { "pactl", "set-sink-volume", "0", "+5%", NULL };
+static const char *cmdsounddown[]  = { "pactl", "set-sink-volume", "0", "-5%", NULL };
+static const char *cmdsuspend[] = { "systemctl", "suspend", NULL };
+static const char *cmdlock[] = { "betterlockscreen", "-l", "dim", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -84,9 +85,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ 0,                            XF86MonBrightnessDown,     spawn,         {.v = cmdbrightnessdown } },
 	{ 0,                            XF86MonBrightnessUp,       spawn,         {.v = cmdbrightnessup } },
-//	{ 0,                            XF86AudioMute,             spawn,         {.v = cmdsoundtoggle } },
 	{ 0,                            XF86AudioRaiseVolume,      spawn,         {.v = cmdsoundup } },
 	{ 0,                            XF86AudioLowerVolume,      spawn,         {.v = cmdsounddown } },
+	{ 0,                            XF86AudioMute,             spawn,         {.v = cmdsoundmute } },
 	{ MODKEY,                       XK_Pause,                  spawn,         {.v = cmdsuspend } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
