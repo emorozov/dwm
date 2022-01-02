@@ -78,6 +78,7 @@ static const char *cmdsounddown[]  = { "change-volume",  "2db-", NULL };
 static const char *cmdsuspend[] = { "systemctl", "suspend", NULL };
 static const char *cmdlock[] = { "betterlockscreen", "-l", "dim", NULL };
 static const char *cmdscreenshot[] = { "flameshot", "gui", NULL };
+static const char *cmdrofimoji[] = { "rofimoji", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -90,8 +91,9 @@ static Key keys[] = {
 	{ 0,                            XF86AudioRaiseVolume,      spawn,         {.v = cmdsoundup } },
 	{ 0,                            XF86AudioLowerVolume,      spawn,         {.v = cmdsounddown } },
 	{ 0,                            XF86AudioMute,             spawn,         {.v = cmdsoundmute } },
+	{ 0,                            XK_Print,                  spawn,         {.v = cmdscreenshot } },
 	{ MODKEY,                       XK_Pause,                  spawn,         {.v = cmdsuspend } },
-	{ MODKEY,                       XK_Print,                  spawn,         {.v = cmdscreenshot } },
+	{ MODKEY|Mod1Mask|ControlMask|ShiftMask, XK_space,                spawn,         {.v = cmdrofimoji } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
