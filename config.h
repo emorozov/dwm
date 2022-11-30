@@ -73,7 +73,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "alacritty", "-t", scratchpadname, "-g", "120x34", NULL };
+static const char *scratchpadcmd[] = { "alacritty", "-t", scratchpadname, NULL };
 static const char *cmdbrightnessup[]  = { "brightnessctl", "s", "10%+", NULL };
 static const char *cmdbrightnessdown[]  = { "brightnessctl", "s", "10%-", NULL };
 static const char *cmdsoundmute[]  = { "pactl", "set-sink-mute", "0", "toggle", NULL };
@@ -83,6 +83,7 @@ static const char *cmdsuspend[] = { "systemctl", "suspend", NULL };
 static const char *cmdlock[] = { "slock", NULL };
 static const char *cmdscreenshot[] = { "flameshot", "gui", NULL };
 static const char *cmdrofimoji[] = { "rofimoji", NULL };
+static const char *cmdrofibuku[] = { "rofi-buku", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -91,6 +92,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = cmdlock } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	{ MODKEY|ShiftMask,             XK_b,      spawn,      {.v = cmdrofibuku } },
 	{ 0,                            XF86MonBrightnessDown,     spawn,         {.v = cmdbrightnessdown } },
 	{ 0,                            XF86MonBrightnessUp,       spawn,         {.v = cmdbrightnessup } },
 	{ 0,                            XF86AudioRaiseVolume,      spawn,         {.v = cmdsoundup } },
