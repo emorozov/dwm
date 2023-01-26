@@ -33,8 +33,10 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor    float x,y,w,h         floatborderpx*/
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        50,50,500,500,        5 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1,        50,50,500,500,        5 },
+	{ "Gimp",     NULL,        NULL,       0,            1,           -1,        50,50,500,500,        5 },
+	{ "firefox",  "Navigator", NULL,       1 << 1,       0,           -1,        50,50,500,500,        5 },
+	{ "Zeal",     NULL,        NULL,       0,            1,           -1,        50,50,500,500,        5 },
+	{ NULL,       NULL,        "Pilorama", 0,            1,           -1,        324,210,320,688,      5 },
 };
 
 /* layout(s) */
@@ -78,7 +80,7 @@ static const char *cmdsoundmute[]  = { "pactl", "set-sink-mute", "0", "toggle", 
 static const char *cmdsoundup[]  = { "change-volume",  "2db+", "unmute", NULL };
 static const char *cmdsounddown[]  = { "change-volume",  "2db-", NULL };
 static const char *cmdsuspend[] = { "systemctl", "suspend", NULL };
-static const char *cmdlock[] = { "slock", NULL };
+static const char *cmdlock[] = { "xscreensaver-command", "-lock", NULL };
 static const char *cmdscreenshot[] = { "flameshot", "gui", NULL };
 static const char *cmdrofimoji[] = { "rofimoji", NULL };
 static const char *cmdrofibuku[] = { "rofi-buku", NULL };
